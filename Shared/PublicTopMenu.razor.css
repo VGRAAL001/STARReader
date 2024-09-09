@@ -19,7 +19,7 @@ header {
         margin-right: 15px;
     }
 
-nav ul {
+span ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -27,20 +27,20 @@ nav ul {
     justify-content: space-around;
 }
 
-    nav ul li {
+    span ul li {
         display: inline;
     }
 
-        nav ul li a {
+        span ul li a {
             color: white;
             text-decoration: none;
             font-weight: bold;
         }
 
-header nav ul li a:hover {
+header span ul li a:hover {
     color: #A0C8D6;
 }
 
-header nav ul li:active {
+header span ul li:active {
     background-color: #67AAC3;
 }
