@@ -1,4 +1,13 @@
-﻿<div class="header">
+﻿@using Syncfusion.Blazor
+@using Syncfusion.Blazor.SfPdfViewer
+@using System.Collections.Generic
+@using Microsoft.CognitiveServices.Speech;
+@using Microsoft.CognitiveServices.Speech.Audio;
+@using Microsoft.CognitiveServices.Speech.Translation;
+@inject IJSRuntime JS
+@inject IConfiguration Config
+
+<div class="header">
     <div class="title">&nbsp &nbsp  StarReader</div>
     <div class="controls">
         <button onclick="playAudio()"><i class="fas fa-play"></i></button>
