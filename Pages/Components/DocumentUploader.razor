@@ -1,4 +1,12 @@
-﻿ @inject IWebHostEnvironment WebHotEnv
+﻿ @using Syncfusion.Blazor
+@using Syncfusion.Blazor.SfPdfViewer
+@using System.Collections.Generic
+@using Microsoft.CognitiveServices.Speech;
+@using Microsoft.CognitiveServices.Speech.Audio;
+@using Microsoft.CognitiveServices.Speech.Translation;
+@inject IJSRuntime JS
+@inject IConfiguration Config
+@inject IWebHostEnvironment WebHotEnv
 <div class="container d-flex">
     <div class="col-sm-4 mx-auto">
         <EditForm Model="fileModel" enctype="multipart/form-data" Enhance FormName="file-form" OnSubmit="HandleFileUpload">
