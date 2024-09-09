@@ -1,0 +1,173 @@
+/* Default styles (apply to all devices) */
+body {
+    font-family: Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #248ec2, #a0cf3c);
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+
+.hero {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero-content h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero-content .btn {
+    background-color: #248EC2;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+footer {
+    background-color: #102540;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+    footer img {
+        height: 60px;
+        margin-top: 10px;
+    }
+
+    footer p {
+        margin: 5px 0;
+    }
+
+#bg-video {
+    border-radius: 50px;
+    width: 60%;
+    height: auto;
+}
+
+.top-right-button {
+    background-color: #a0cf3c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+    .top-right-button:hover {
+        background-color: #248ec2;
+        color: white;
+    }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+
+    .hero-content h2 {
+        font-size: 24px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    #bg-video {
+        width: 100%;
+    }
+
+    .top-right-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .container {
+        width: 85%;
+    }
+
+    .hero-content h2 {
+        font-size: 28px;
+    }
+
+    .hero-content p {
+        font-size: 18px;
+    }
+
+    #bg-video {
+        width: 80%;
+    }
+
+    .top-right-button {
+        font-size: 16px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .container {
+        width: 80%;
+    }
+
+    .hero-content h2 {
+        font-size: 32px;
+    }
+
+    #bg-video {
+        width: 70%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .container {
+        width: 75%;
+    }
+
+    .hero-content h2 {
+        font-size: 36px;
+    }
+
+    #bg-video {
+        width: 60%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .container {
+        width: 70%;
+    }
+
+    .hero-content h2 {
+        font-size: 40px;
+    }
+
+    #bg-video {
+        width: 60%;
+    }
+}

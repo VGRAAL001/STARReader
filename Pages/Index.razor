@@ -1,0 +1,10 @@
+﻿@page "/"
+<AuthorizeView>
+    <Authorized>
+        <BlazorApp.Pages.Components.AuthenticatedHome></BlazorApp.Pages.Components.AuthenticatedHome>
+    </Authorized>
+    <NotAuthorized>
+        <BlazorApp.Pages.Components.AnonymousHome></BlazorApp.Pages.Components.AnonymousHome>
+    </NotAuthorized>
+</AuthorizeView>
+

@@ -1,0 +1,184 @@
+/* Default styles (apply to all devices) */
+body {
+    font-family: Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+    .logo img {
+        height: 40px;
+        margin-right: 15px;
+    }
+
+
+.team-section {
+    background-color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+    .team-section h2 {
+        color: #A0CF3C;
+    }
+
+.team-members {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.member {
+    width: 22%;
+}
+
+    .member img {
+        width: 100%;
+        border-radius: 50%;
+    }
+
+    .member h3 {
+        color: #002147;
+        margin-top: 15px;
+    }
+
+.sponsor-section {
+    background-color: #eef2f5;
+    padding: 40px 0;
+    text-align: center;
+}
+
+    .sponsor-section h2 {
+        color: #002147;
+    }
+
+.sponsor-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+    .sponsor-info img {
+        height: 60px;
+    }
+
+footer {
+    background-color: #102540;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+    footer img {
+        height: 60px;
+        margin-top: 10px;
+    }
+
+.top-right-button {
+    background-color: #a0cf3c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+    .top-right-button:hover {
+        background-color: #248ec2;
+        color: white;
+    }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+
+    .team-members {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .member {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .sponsor-info {
+        flex-direction: column;
+    }
+
+        .sponsor-info img {
+            height: 40px;
+            margin-bottom: 20px;
+        }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .container {
+        width: 85%;
+    }
+
+    .member {
+        width: 45%;
+    }
+
+    .sponsor-info {
+        flex-direction: column;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .container {
+        width: 80%;
+    }
+
+    .team-members {
+        justify-content: space-between;
+    }
+
+    .member {
+        width: 30%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .container {
+        width: 75%;
+    }
+
+    .member {
+        width: 22%;
+    }
+
+    .sponsor-info {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .container {
+        width: 70%;
+    }
+}

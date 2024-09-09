@@ -1,0 +1,129 @@
+/* Default styles (apply to all devices) */
+body {
+    font-family: Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+.look-section {
+    background-color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+    .look-section h2 {
+        color: #A0CF3C;
+    }
+
+.video-demo {
+    margin-top: 20px;
+    text-align: center;
+}
+
+    .video-demo video {
+        width: 100%;
+        max-width: 800px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+footer {
+    background-color: #102540;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+    footer img {
+        height: 60px;
+        margin-top: 10px;
+    }
+
+.top-right-button {
+    background-color: #a0cf3c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+    .top-right-button:hover {
+        background-color: #248ec2;
+        color: white;
+    }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .video-demo video {
+        width: 100%;
+    }
+
+    .top-right-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .container {
+        width: 85%;
+    }
+
+    .video-demo video {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .top-right-button {
+        font-size: 16px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .container {
+        width: 80%;
+    }
+
+    .video-demo video {
+        max-width: 700px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .container {
+        width: 75%;
+    }
+
+    .video-demo video {
+        max-width: 800px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .container {
+        width: 70%;
+    }
+}
