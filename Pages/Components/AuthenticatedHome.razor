@@ -1,118 +1,22 @@
-@page "AuthenticatedHome"
-@using Syncfusion.Blazor
-@using Syncfusion.Blazor.SfPdfViewer
-@using System.Collections.Generic
-@using Microsoft.CognitiveServices.Speech;
-@using Microsoft.CognitiveServices.Speech.Audio;
-@using Microsoft.CognitiveServices.Speech.Translation;
-@inject IJSRuntime JS
-@inject IConfiguration Config
+<div class="header">
+    <div class="title">&nbsp &nbsp  StarReader</div>
 
-<PageTitle>StarReader</PageTitle>
+    <DocumentReader />
 
-<div class="top-row px-4">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    @* <button class="exam-button" onclick="startExamination()">Upload Document </button>&nbsp &nbsp &nbsp &nbsp *@
+    <DocumentUploader />
+    <form method="post" action="Identity/Account/Logout">
+        <button type="submit" class="nav-link btn btn-link">Log out</button>
+    </form>
 
-    <div class="header">
-        <div class="title">&nbsp &nbsp StarReader</div>
-        <div class="controls">
-            <button @onclick="playAudio"><i class=@buttonType></i></button>
-@*             <button  @onclick="pauseAudio" ><i class="fas fa-pause"></i></button>*@       
+</div>
 
-@*  <button  @onclick="rewindAudio" ><i class="fas fa-undo"></i></button> *@        
-        </div>
-        <div class="speed-control">
-            <label for="speed">&nbsp &nbsp Speed:</label>
-            <input type="range" id="speed" name="speed" min="0.5" max="2.0" value="1" step="0.1" @* @oninput="adjustSpeed" *@>
-            <span id="speed-value">1.0x</span>
-        </div>
-        <div class="timer" id="timer"></div>
-        <button class="exam-button" @* @onclick="uploadPDF" *@>Upload PDF</button>&nbsp &nbsp &nbsp &nbsp
+<div class="main-content">
+    <div class="exam" id="exam-content">
+        <p>Exam 2024</p>
     </div>
 </div>
 
-<div class="control-section"> 
-    <SfPdfViewer2 DocumentPath="@path"
-                  Height="640px"
-                  Width="100%"
-                  EnableToolbar="false"
-                  EnableNavigationToolbar="false"
-                  EnableTextSelection="true">
-        <Syncfusion.Blazor.SfPdfViewer.PdfViewerEvents OnTextSelectionEnd="OnTextSelectionEnd">   </Syncfusion.Blazor.SfPdfViewer.PdfViewerEvents>
-    </SfPdfViewer2>
-</div>
-
-
-@code{
-    private string defaultConnection = "";
-
-    protected override void OnInitialized()
-    {
-        defaultConnection = Config.GetConnectionString("Default") ?? "unknown";
-    }
-
-
-    private string path
-    {
-        get
-        {
-            var physicalPath = Path.Combine(Directory.GetCurrentDirectory(), "data", "TestDoc.pdf");
-            return physicalPath;
-        }
-    }
-
-    public string buttonType = "fas fa-play";
-    public string selectedText = "";
-    public SpeechSynthesizer synthesizer;
-
-
-
-    public void OnTextSelectionEnd(TextSelectionEndEventArgs args)
-    {
-        selectedText = args.TextContent;
-    }
-
-    async Task SynthesizeAudioAsync()
-    {
-        var config = SpeechConfig.FromSubscription("5efe52b12721446b8053109674e1d9d4", "southafricanorth");
-        config.SpeechSynthesisLanguage = "en-ZA"; ///language should be get and set from database; not hardcoded
-        config.SpeechSynthesisVoiceName = "en-ZA-LeahNeural"; ///accent
-
-        synthesizer = new SpeechSynthesizer(config); //runs text to speech conversions in-memory stream
-        var result = await synthesizer.SpeakTextAsync(selectedText);
-
-    }
-
-    async Task StopSpeakingAsync()
-    {
-        await synthesizer.StopSpeakingAsync();
-    }
-
-    async Task playAudio()
-    {
-        if (buttonType == "fas fa-play") {
-            buttonType = "fas fa-pause";
-            await SynthesizeAudioAsync();
-            buttonType = "fas fa-play";
-        }
-
-        else
-        {
-            buttonType = "fas fa-play";
-            await StopSpeakingAsync();
-        }
-    }
+@code {
 
 }
-
-<script>
-    function updateClock() {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString();
-        document.getElementById('timer').innerText = timeString;
-    }
-
-    setInterval(updateClock, 1000);
-
-  
-</script>
