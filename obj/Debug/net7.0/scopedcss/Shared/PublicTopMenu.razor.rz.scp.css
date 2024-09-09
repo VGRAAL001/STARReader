@@ -1,0 +1,46 @@
+.container[b-yyje806pt6] {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header[b-yyje806pt6] {
+    background-color: #102540;
+    color: white;
+    padding: 20px 0;
+}
+
+.logo[b-yyje806pt6] {
+    display: flex;
+    align-items: center;
+}
+
+    .logo img[b-yyje806pt6] {
+        height: 40px;
+        margin-right: 15px;
+    }
+
+nav ul[b-yyje806pt6] {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+    nav ul li[b-yyje806pt6] {
+        display: inline;
+    }
+
+        nav ul li a[b-yyje806pt6] {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+header nav ul li a:hover[b-yyje806pt6] {
+    color: #A0C8D6;
+}
+
+header nav ul li:active[b-yyje806pt6] {
+    background-color: #67AAC3;
+}

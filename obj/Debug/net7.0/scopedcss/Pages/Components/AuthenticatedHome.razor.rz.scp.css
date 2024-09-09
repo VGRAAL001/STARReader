@@ -1,0 +1,108 @@
+
+.header[b-k8id6b0mb4] {
+    background: linear-gradient(to right, #248EC2, #A0CF3C);
+    color: white;
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+    .header .title[b-k8id6b0mb4] {
+        font-size: 30px;
+        font-weight: bold;
+        font-family: Arial;
+        margin-right: 20px;
+    }
+
+    .header .controls[b-k8id6b0mb4] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 20px;
+    }
+
+        .header .controls button[b-k8id6b0mb4] {
+            background: none;
+            border: none;
+            color: black;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 45px;
+        }
+
+    .header .exam-button[b-k8id6b0mb4] {
+        background-color: #A0C8D6;
+        color: black;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+
+    .header .logout-button[b-k8id6b0mb4] {
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+
+    .header .timer[b-k8id6b0mb4] {
+        font-size: 30px;
+        margin-left: auto;
+        margin-right: 130px;
+    }
+
+
+
+.main-content .exam[b-k8id6b0mb4] {
+    width: 60%;
+    height: 60%;
+    border: 2px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+    .main-content .exam p[b-k8id6b0mb4] {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 18px;
+        margin: 0;
+    }
+
+.footer[b-k8id6b0mb4] {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+    .footer button[b-k8id6b0mb4] {
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+.timer[b-k8id6b0mb4] {
+    font-size: 24px;
+    margin-left: auto;
+    margin-right: 20px;
+    color: white;
+    font-weight: bold;
+}

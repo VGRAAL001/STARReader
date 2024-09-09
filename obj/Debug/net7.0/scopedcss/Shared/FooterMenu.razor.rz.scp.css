@@ -1,0 +1,73 @@
+/* Default styles (apply to all devices) */
+
+
+.container[b-u577enw4z7] {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+footer[b-u577enw4z7] {
+    background-color: #102540;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+    footer img[b-u577enw4z7] {
+        height: 60px;
+        margin-top: 10px;
+    }
+
+    footer p[b-u577enw4z7] {
+        margin: 5px 0;
+    }
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .container[b-u577enw4z7] {
+        width: 90%;
+    }
+
+    .top-right-button[b-u577enw4z7] {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .container[b-u577enw4z7] {
+        width: 85%;
+    }
+
+   
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .container[b-u577enw4z7] {
+        width: 80%;
+    }
+
+    
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .container[b-u577enw4z7] {
+        width: 75%;
+    }
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .container[b-u577enw4z7] {
+        width: 70%;
+    }
+
+    
+}

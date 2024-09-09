@@ -1,0 +1,184 @@
+/* Default styles (apply to all devices) */
+body[b-9zm8887l1r] {
+    font-family: Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.container[b-9zm8887l1r] {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+
+.logo[b-9zm8887l1r] {
+    display: flex;
+    align-items: center;
+}
+
+    .logo img[b-9zm8887l1r] {
+        height: 40px;
+        margin-right: 15px;
+    }
+
+
+.team-section[b-9zm8887l1r] {
+    background-color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+    .team-section h2[b-9zm8887l1r] {
+        color: #A0CF3C;
+    }
+
+.team-members[b-9zm8887l1r] {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.member[b-9zm8887l1r] {
+    width: 22%;
+}
+
+    .member img[b-9zm8887l1r] {
+        width: 100%;
+        border-radius: 50%;
+    }
+
+    .member h3[b-9zm8887l1r] {
+        color: #002147;
+        margin-top: 15px;
+    }
+
+.sponsor-section[b-9zm8887l1r] {
+    background-color: #eef2f5;
+    padding: 40px 0;
+    text-align: center;
+}
+
+    .sponsor-section h2[b-9zm8887l1r] {
+        color: #002147;
+    }
+
+.sponsor-info[b-9zm8887l1r] {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+    .sponsor-info img[b-9zm8887l1r] {
+        height: 60px;
+    }
+
+footer[b-9zm8887l1r] {
+    background-color: #102540;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+    footer img[b-9zm8887l1r] {
+        height: 60px;
+        margin-top: 10px;
+    }
+
+.top-right-button[b-9zm8887l1r] {
+    background-color: #a0cf3c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+    .top-right-button:hover[b-9zm8887l1r] {
+        background-color: #248ec2;
+        color: white;
+    }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .container[b-9zm8887l1r] {
+        width: 90%;
+    }
+
+    .team-members[b-9zm8887l1r] {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .member[b-9zm8887l1r] {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .sponsor-info[b-9zm8887l1r] {
+        flex-direction: column;
+    }
+
+        .sponsor-info img[b-9zm8887l1r] {
+            height: 40px;
+            margin-bottom: 20px;
+        }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .container[b-9zm8887l1r] {
+        width: 85%;
+    }
+
+    .member[b-9zm8887l1r] {
+        width: 45%;
+    }
+
+    .sponsor-info[b-9zm8887l1r] {
+        flex-direction: column;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .container[b-9zm8887l1r] {
+        width: 80%;
+    }
+
+    .team-members[b-9zm8887l1r] {
+        justify-content: space-between;
+    }
+
+    .member[b-9zm8887l1r] {
+        width: 30%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .container[b-9zm8887l1r] {
+        width: 75%;
+    }
+
+    .member[b-9zm8887l1r] {
+        width: 22%;
+    }
+
+    .sponsor-info[b-9zm8887l1r] {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .container[b-9zm8887l1r] {
+        width: 70%;
+    }
+}
