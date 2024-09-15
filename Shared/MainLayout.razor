@@ -1,4 +1,4 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
 
 <PageTitle>STAR Reader</PageTitle>
 
@@ -14,13 +14,12 @@
 
     <main>
         <!-- Header -->
-        <div class="top-row px-4 auth">
+        <div class="top-row px-4 ">
             <AuthorizeView>
                 <Authorized>
                     <LoginDisplay />
                 </Authorized>
                 <NotAuthorized>
-                    <PublicTopMenu />
                     <LoginDisplay />
                 </NotAuthorized>
             </AuthorizeView>
@@ -31,7 +30,14 @@
         </article>
 
         <div class="bottom-row px-4">
-            <FooterMenu />
+            <AuthorizeView>
+                <Authorized>
+                   
+                </Authorized>
+                <NotAuthorized>
+                 <FooterMenu/>
+                </NotAuthorized>
+            </AuthorizeView>
         </div>
     </main>
 </div>
