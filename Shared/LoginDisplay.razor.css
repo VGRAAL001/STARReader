@@ -19,32 +19,3 @@
     align-items: center;
     position: relative;
 }
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin : 0;
-    display: flex;
-    justify-content: space-around;
-}
-
-nav ul li{
-    display: inline;
-}
-
-nav ul li a:hover{
-    color : #A0C8D6;
-}
-
-nav ul li:active{
-    color: f0f0f0;
-}
- 
-li{
-    float:left;
-}
-a {
-    display: block;
-    padding: 8px;
-    
-}
