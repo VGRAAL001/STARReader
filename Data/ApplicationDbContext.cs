@@ -15,14 +15,7 @@ namespace BlazorApp.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<AppUser>(b =>
-            {
-                b.Property(p => p.StudentNo)
-                    .HasMaxLength(32);
-                b.Property(p => p.FirstName)
-                    .HasMaxLength(64);
-            });
-            
+                       
             builder.Entity<IdentityRole>(b =>
             {
                 b.HasData(

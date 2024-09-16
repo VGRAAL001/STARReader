@@ -1,17 +1,16 @@
 
-<div class="header">
+    <div class="header">
     <DocumentUploader />
-    <DocumentReader />
- 
 
-        <div class="title">&nbsp &nbsp  StarReader</div>
+
+    <div class="title">&nbsp &nbsp  StarReader  &nbsp &nbsp</div>
         <div class="controls">
-            <button onclick="playAudio()"><i class="fas fa-play"></i></button>
-            <button onclick="pauseAudio()"><i class="fas fa-pause"></i></button>
-            
+           
+        <DocumentReader />
+
 
         
-<div class="speed-control">
+        <div class="speed-control">
             <label for="speed">&nbsp &nbsp Speed:</label>
             <input type="range" id="speed" name="speed" min="0.5" max="2.0" value="1" step="0.1" oninput="adjustSpeed(this.value)">
             <span id="speed-value">1.0x</span>
@@ -19,29 +18,16 @@
 
             
         </div>
+        
         <div class="timer" id="timer">
             
         </div>
-<div class="combo-box">
-            <label for="myComboBox">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Choose an accent:</label>
-            <select id="myComboBox" name="myComboBox">
-                <option value="item1"> </option>
-                <option value="item2"> </option>
-                <option value="item3"> </option>
-            </select>
-</div>
+
         <button class="exam-button" onclick="startExamination()">Upload Document</button>&nbsp &nbsp &nbsp &nbsp
     </div>
 
-    <div class="main-content">
-        <div class="exam" id="exam-content">
-            <p>Exam 2024</p>
-        </div>
-
-        
-
-   
-    </div>
+   <DocumentDisplay />
+    
     
  
     <script>
