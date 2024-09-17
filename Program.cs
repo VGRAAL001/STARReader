@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
+using Syncfusion.Blazor;
+using Syncfusion.Licensing;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,7 +36,27 @@ builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuth
 
 builder.Services.AddSingleton<WeatherForecastService>();
 
+builder.Services.AddSignalR(o => { o.MaximumReceiveMessageSize = 102400000; });
+
+builder.Services.AddMemoryCache();
+//Add Syncfusion Blazor service to the container.
+builder.Services.AddSyncfusionBlazor();
+
+
+
 var app = builder.Build();
+
+SyncfusionLicenseProvider.RegisterLicense(
+    app.Configuration.GetValue<string>("LicenseKey")
+    );
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
