@@ -1,50 +1,27 @@
-body[b-xgp8tzn7lq] {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 25vh;
+/* Add a black background color to the top navigation */
+.topnav[b-xgp8tzn7lq] {
     background-color: #102540;
-    margin: 0;
+    overflow: hidden;
 }
 
-.header[b-xgp8tzn7lq] {
-    background: linear-gradient(to right, #248EC2, #A0CF3C);
-    color: white;
-    width: 100%;
-    padding: 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-}
+    /* Style the links inside the navigation bar */
+    .topnav a[b-xgp8tzn7lq] {
+        float: right;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
 
-nav ul[b-xgp8tzn7lq] {
-    list-style-type: none;
-    padding: 0;
-    margin : 0;
-    display: flex;
-    justify-content: space-around;
-}
+        /* Change the color of links on hover */
+        .topnav a:hover[b-xgp8tzn7lq] {
+            background-color: #A0C8D6;
+            color: white;
+        }
 
-nav ul li[b-xgp8tzn7lq]{
-    display: inline;
-}
-
-nav ul li a:hover[b-xgp8tzn7lq]{
-    color : #A0C8D6;
-}
-
-nav ul li:active[b-xgp8tzn7lq]{
-    color: f0f0f0;
-}
- 
-li[b-xgp8tzn7lq]{
-    float:left;
-}
-a[b-xgp8tzn7lq] {
-    display: block;
-    padding: 8px;
-    
-}
+        /* Add a color to the active/current link */
+        .topnav a.active[b-xgp8tzn7lq] {
+            background-color: #A0C8D6;
+            color: white;
+        }
