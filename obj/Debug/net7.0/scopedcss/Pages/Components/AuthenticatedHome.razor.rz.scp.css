@@ -1,3 +1,13 @@
+body[b-k8id6b0mb4] {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 25vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
 
 .header[b-k8id6b0mb4] {
     background: linear-gradient(to right, #248EC2, #A0CF3C);
@@ -36,29 +46,17 @@
     .header .exam-button[b-k8id6b0mb4] {
         background-color: #A0C8D6;
         color: black;
-        border: none;
+        // border: none;
         padding: 10px;
         border-radius: 5px;
         cursor: pointer;
         font-size: 20px;
-        margin-left: 10px;
-    }
-
-    .header .logout-button[b-k8id6b0mb4] {
-        background-color: black;
-        color: white;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 20px;
-        margin-left: 10px;
     }
 
     .header .timer[b-k8id6b0mb4] {
-        font-size: 30px;
+        font-size: 24px;
         margin-left: auto;
-        margin-right: 130px;
+        margin-right: 20px;
     }
 
 
@@ -98,11 +96,3 @@
         cursor: pointer;
         font-size: 16px;
     }
-
-.timer[b-k8id6b0mb4] {
-    font-size: 24px;
-    margin-left: auto;
-    margin-right: 20px;
-    color: white;
-    font-weight: bold;
-}

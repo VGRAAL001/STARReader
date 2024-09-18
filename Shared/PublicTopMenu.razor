@@ -1,5 +1,5 @@
 
-<header>
+@* <header>
     <div class="logo">
         <!-- Update the path to the logo image -->
         <img src="../Images/STAR Logo.png" alt="STAR Reader Logo">
@@ -9,8 +9,34 @@
     <li><a href="about">About STAR Reader</a></li>
     <li><a href="know-us">Get To Know Us</a></li>
     <li><a href="take-a-look">Take A Look</a></li>
-    </header>
+    </header> *@
+
+<AuthorizeView>
+    <Authorized>
+        <a href="Identity/Account/Manage">Hello, @context.User.Identity?.Name!</a>
+        <form method="post" action="Identity/Account/Logout">
+            <button type="submit" class="nav-link btn btn-link">Log out</button>
+        </form>
+    </Authorized>
+    <NotAuthorized>
+        <div class="topnav">
+            <a href="/">Home Page</a>
+            <a href="about">About STAR Reader</a>
+            <a href="know-us">Get To Know Us</a>
+            <a href="take-a-look">Take A Look</a>
+        </div>
+        <div class="topnav-right">
+            <a href="Identity/Account/Register">Register</a>
+            <a href="Identity/Account/Login">Log in</a>
+        </div>
+
+    </NotAuthorized>
+</AuthorizeView>
+
+
+
 
 @code {
 
 }
+

@@ -4,33 +4,145 @@
 @using Microsoft.CognitiveServices.Speech;
 @using Microsoft.CognitiveServices.Speech.Audio;
 @using Microsoft.CognitiveServices.Speech.Translation;
-@inject IJSRuntime JS
-@inject IConfiguration Config
+@inherits DocumentDisplay;
 
-<div class="header">
-    <div class="title">&nbsp &nbsp  StarReader</div>
-    <div class="controls">
-        <button onclick="playAudio()"><i class="fas fa-play"></i></button>
-        <button onclick="pauseAudio()"><i class="fas fa-pause"></i></button>
 
-        <div class="speed-control">
-            <label for="speed">&nbsp &nbsp Speed:</label>
-            <input type="range" id="speed" name="speed" min="0.5" max="2.0" value="1" step="0.1" oninput="adjustSpeed(this.value)">
-            <span id="speed-value">1.0x</span>
-        </div>
-    </div>
-    <div class="timer" id="timer"></div>
-    <div class="combo-box">
-        <label for="myComboBox">&nbsp &nbsp Choose an accent:</label>
-        <select id="myComboBox" name="myComboBox">
-            <option value="item1"></option>
-            <option value="item2"></option>
-            <option value="item3"></option>
-        </select>
-    </div>
+<div class="combo-box">
+    <label for="languageComboBox">Choose a language:</label>
+    <select id="languageComboBox" @onchange="OnLanguageChange" name="languageComboBox">
+        <option value="">--Select Language--</option>
+        <option value="1">English</option>
+        <option value="2">Afrikaans</option>
+        <option value="3">isiZulu</option>
+    </select>
+
+    <br />
+
+    <label for="voiceComboBox">Choose a voice:</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="voiceComboBox" @onchange="OnVoiceChange" name="voiceComboBox" disabled="@disableVoiceCombo">
+        <option value="">--Select Voice--</option>
+        @if (voices != null)
+        {
+            @foreach (var voice in voices)
+            {
+                <option value="@voice">@voice</option>
+            }
+        }
+    </select>
 </div>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+&nbsp;&nbsp;&nbsp;&nbsp;<button @onclick="playAudio"><i class=@buttonType></i></button>
 
 @code {
+    private string selectedLanguageCode ="";
+    private string selectedVoiceCode = "";
+    private List<string> voices = new List<string>();
+    private bool disableVoiceCombo = true;
+    public SpeechSynthesizer synthesizer;
+    public string buttonType = "fas fa-play";
+
+
+    async Task SynthesizeAudioAsync()
+    {
+        var config = SpeechConfig.FromSubscription("5efe52b12721446b8053109674e1d9d4", "southafricanorth");
+        config.SpeechSynthesisLanguage = selectedLanguageCode; ///language should be get and set from database; not hardcoded
+        config.SpeechSynthesisVoiceName = selectedVoiceCode; ///accent
+
+        synthesizer = new SpeechSynthesizer(config); //runs text to speech conversions in-memory stream
+        var result = await synthesizer.SpeakTextAsync(selectedText);
+    }
+
+    async Task OnLanguageChange(Microsoft.AspNetCore.Components.ChangeEventArgs e)
+    {
+        selectedLanguageCode = e.Value.ToString();
+        disableVoiceCombo = false;
+
+        switch (selectedLanguageCode)
+        {
+            case "1":
+                voices = new List<string> { "EnglishA", "EnglishB", "EnglishC", "EnglishD", "EnglishE" };
+                break;
+            case "2":
+                voices = new List<string> { "Afr1", "Afr2" };
+                break;
+            case "3":
+                voices = new List<string> { "Zul1", "Zul2", "Zul3" };
+                break;
+            default:
+                voices = new List<string>(); // No voices for an unselected language
+                disableVoiceCombo = true; // Disable voice combo box if no valid language is selected
+                break;
+        }
+    }
+
+    void OnVoiceChange(Microsoft.AspNetCore.Components.ChangeEventArgs e)
+    {
+        var selectedVoice = e.Value.ToString();
+
+        // Set the selectedLanguageCode and selectedVoiceCode based on the voice and language combination
+        switch (selectedVoice)
+        {
+            case "EnglishA":
+                selectedLanguageCode = "en-AU";
+                selectedVoiceCode = "en-AU-NatashaNeural";
+                break;
+            case "EnglishB":
+                selectedLanguageCode = "en-AU";
+                selectedVoiceCode = "en-AU-WilliamNeural";
+                break;
+            case "EnglishC":
+                selectedLanguageCode = "en-GB";
+                selectedVoiceCode = "en-GB-SoniaNeural";
+                break;
+            case "Afr1":
+                selectedLanguageCode = "af-ZA";
+                selectedVoiceCode = "af-ZA-AdriNeural3";
+                break;
+            case "Afr2":
+                selectedLanguageCode = "af-ZA";
+                selectedVoiceCode = "af-ZA-WillemNeural3";
+                break;
+            case "Zul1":
+                selectedLanguageCode = "zu-ZA";
+                selectedVoiceCode = "zu-ZA-ThandoNeural3";
+                break;
+            case "Zul2":
+                selectedLanguageCode = "zu-ZA";
+                selectedVoiceCode = "zu-ZA-ThembaNeural3";
+                break;
+            case "Zul3":
+                selectedLanguageCode = "zu-ZA";
+                selectedVoiceCode = "zu-ZA-LungeloNeural";
+                break;
+            default:
+                selectedLanguageCode = string.Empty;
+                selectedVoiceCode = string.Empty;
+                break;
+        }
+    }
+
+    async Task playAudio()
+    {
+        if (buttonType == "fas fa-play")
+        {
+            buttonType = "fas fa-pause";
+            await SynthesizeAudioAsync();
+            buttonType = "fas fa-play";
+        }
+
+        else
+        {
+            buttonType = "fas fa-play";
+            await StopSpeakingAsync();
+        }
+    }
+
+    async Task StopSpeakingAsync()
+    {
+        await synthesizer.StopSpeakingAsync();
+
+    }
+
 
 }

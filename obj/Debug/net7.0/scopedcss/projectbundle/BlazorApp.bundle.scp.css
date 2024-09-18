@@ -390,6 +390,16 @@ footer[b-fsc318wdk4] {
     }
 }
 /* _content/BlazorApp/Pages/Components/AuthenticatedHome.razor.rz.scp.css */
+body[b-k8id6b0mb4] {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 25vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
 
 .header[b-k8id6b0mb4] {
     background: linear-gradient(to right, #248EC2, #A0CF3C);
@@ -428,29 +438,17 @@ footer[b-fsc318wdk4] {
     .header .exam-button[b-k8id6b0mb4] {
         background-color: #A0C8D6;
         color: black;
-        border: none;
+        // border: none;
         padding: 10px;
         border-radius: 5px;
         cursor: pointer;
         font-size: 20px;
-        margin-left: 10px;
-    }
-
-    .header .logout-button[b-k8id6b0mb4] {
-        background-color: black;
-        color: white;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 20px;
-        margin-left: 10px;
     }
 
     .header .timer[b-k8id6b0mb4] {
-        font-size: 30px;
+        font-size: 24px;
         margin-left: auto;
-        margin-right: 130px;
+        margin-right: 20px;
     }
 
 
@@ -490,14 +488,6 @@ footer[b-fsc318wdk4] {
         cursor: pointer;
         font-size: 16px;
     }
-
-.timer[b-k8id6b0mb4] {
-    font-size: 24px;
-    margin-left: auto;
-    margin-right: 20px;
-    color: white;
-    font-weight: bold;
-}
 /* _content/BlazorApp/Pages/Components/DocumentReader.razor.rz.scp.css */
 /* _content/BlazorApp/Pages/KnowUs.razor.rz.scp.css */
 /* Default styles (apply to all devices) */
@@ -888,6 +878,57 @@ footer[b-u577enw4z7] {
 
     
 }
+/* _content/BlazorApp/Shared/LoginDisplay.razor.rz.scp.css */
+body[b-xgp8tzn7lq] {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 25vh;
+    background-color: #102540;
+    margin: 0;
+}
+
+.header[b-xgp8tzn7lq] {
+    background: linear-gradient(to right, #248EC2, #A0CF3C);
+    color: white;
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+nav ul[b-xgp8tzn7lq] {
+    list-style-type: none;
+    padding: 0;
+    margin : 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul li[b-xgp8tzn7lq]{
+    display: inline;
+}
+
+nav ul li a:hover[b-xgp8tzn7lq]{
+    color : #A0C8D6;
+}
+
+nav ul li:active[b-xgp8tzn7lq]{
+    color: f0f0f0;
+}
+ 
+li[b-xgp8tzn7lq]{
+    float:left;
+}
+a[b-xgp8tzn7lq] {
+    display: block;
+    padding: 8px;
+    
+}
 /* _content/BlazorApp/Shared/MainLayout.razor.rz.scp.css */
 .page[b-3dsd3z3yec] {
     position: relative;
@@ -899,14 +940,12 @@ main[b-3dsd3z3yec] {
     flex: 1;
 }
 
-.sidebar[b-3dsd3z3yec] {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
-}
+
 
 .top-row[b-3dsd3z3yec] {
-    background-color: #f7f7f7;
+    background-color: #102540;
     border-bottom: 1px solid #d6d5d5;
-    justify-content: flex-end;
+    justify-content: flex-start;
     height: 3.5rem;
     display: flex;
     align-items: center;
@@ -921,7 +960,7 @@ main[b-3dsd3z3yec] {
         overflow: hidden;
         text-overflow: ellipsis;
     }
-/*Code I added - End*/
+
 
 /*less than or equal to*/
 /*Max-width is the maximum width at which a style will continue to be applied. 
@@ -939,7 +978,7 @@ After that, the style will STOP being applied.*/
         margin-left: 0;
     }
 
-    /*Code I added - Start*/
+   
     .page main[b-3dsd3z3yec] {
         display: flex;
         flex-direction: column;
@@ -949,7 +988,7 @@ After that, the style will STOP being applied.*/
         .page main .top-row[b-3dsd3z3yec] {
             flex: 0 0 3.5rem;
         }
-    /*Code I added - End*/
+   
 }
 
 @media (max-width: 640.98px) {
@@ -971,12 +1010,7 @@ After that, the style will STOP being applied.*/
         flex-direction: row;
     }
 
-    .sidebar[b-3dsd3z3yec] {
-        width: 250px;
-        height: 100vh;
-        position: sticky;
-        top: 0;
-    }
+  
 
     .top-row[b-3dsd3z3yec] {
         position: sticky;
@@ -1071,7 +1105,7 @@ After that, the style will STOP being applied.*/
 }
 /* _content/BlazorApp/Shared/PublicTopMenu.razor.rz.scp.css */
 .container[b-yyje806pt6] {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -1079,11 +1113,18 @@ header[b-yyje806pt6] {
     background-color: #102540;
     color: white;
     padding: 20px 0;
+    margin-right: 2rem;
+}
+.header-content[b-yyje806pt6] {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
 }
 
 .logo[b-yyje806pt6] {
     display: flex;
     align-items: center;
+    
 }
 
     .logo img[b-yyje806pt6] {
@@ -1091,28 +1132,30 @@ header[b-yyje806pt6] {
         margin-right: 15px;
     }
 
-nav ul[b-yyje806pt6] {
+
+span ul[b-yyje806pt6] {
     list-style-type: none;
     padding: 0;
     margin: 0;
     display: flex;
     justify-content: space-around;
+    gap: 1.5rem;
 }
 
-    nav ul li[b-yyje806pt6] {
+    span ul li[b-yyje806pt6] {
         display: inline;
     }
 
-        nav ul li a[b-yyje806pt6] {
+        span ul li a[b-yyje806pt6] {
             color: white;
             text-decoration: none;
             font-weight: bold;
         }
 
-header nav ul li a:hover[b-yyje806pt6] {
+header span ul li a:hover[b-yyje806pt6] {
     color: #A0C8D6;
 }
 
-header nav ul li:active[b-yyje806pt6] {
+header span ul li:active[b-yyje806pt6] {
     background-color: #67AAC3;
 }
