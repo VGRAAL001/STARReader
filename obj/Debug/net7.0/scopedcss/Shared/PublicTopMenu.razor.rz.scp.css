@@ -1,3 +1,18 @@
+
+.h1[b-yyje806pt6] {
+    font-size:29px;
+    color: #FFFFFF;
+    background-color: #102540;
+    padding: 14px 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.custom-image[b-yyje806pt6]{
+    width: 50px;
+    height:50px;
+}
+
 /* Add a black background color to the top navigation */
 .topnav[b-yyje806pt6] {
     background-color: #102540;
@@ -53,3 +68,6 @@
             background-color: #67AAC3;
             color: #A0C8D6;
         }
+
+
+
