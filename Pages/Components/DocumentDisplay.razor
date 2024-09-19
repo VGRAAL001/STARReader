@@ -1,7 +1,6 @@
 ﻿@using Syncfusion.Blazor;
 @using Syncfusion.Blazor.SfPdfViewer;
-@using Syncfusion 
-@inherits DocumentUploader;
+@using Syncfusion;
 
 <SfPdfViewer2 DocumentPath="@path"
               Height="640px"
@@ -13,12 +12,25 @@
 </SfPdfViewer2>
 
 @code {
-    public string selectedText = "";
+    private string selectedText = "";
 
-    public void OnTextSelectionEnd(TextSelectionEndEventArgs args)
+    [Parameter]
+
+    public string? SelectedText { get; set; }
+
+    [Parameter]
+
+    public EventCallback<string?> SelectedTextChanged { get; set; }
+
+    public async Task OnTextSelectionEnd(TextSelectionEndEventArgs args)
     {
-        selectedText = "";
+
         selectedText = args.TextContent;
+
+        SelectedText = selectedText;
+
+        await SelectedTextChanged.InvokeAsync(SelectedText);
+
     }
 
     private string path
@@ -26,7 +38,10 @@
         get
         {
             var physicalPath = Path.Combine(Directory.GetCurrentDirectory(), "Pages", "Components", "InitialDisplay.pdf");
+
             return physicalPath;
+
         }
+
     }
 }
