@@ -4,8 +4,6 @@
 @using Microsoft.CognitiveServices.Speech;
 @using Microsoft.CognitiveServices.Speech.Audio;
 @using Microsoft.CognitiveServices.Speech.Translation;
-@inherits DocumentDisplay;
-
 
 <div class="combo-box">
     <label for="languageComboBox">Choose a language:</label>
@@ -32,46 +30,70 @@
 </div>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-&nbsp;&nbsp;&nbsp;&nbsp;<button @onclick="playAudio"><i class=@buttonType></i></button>
+&nbsp;&nbsp;&nbsp;&nbsp;<button @onclick="playAudio" disabled="@disablePlay"><i class=@buttonType></i></button>
 
 @code {
-    private string selectedLanguageCode ="";
+    [Parameter]
+    public string? SelectedText { get; set; }
+
+    private string selectedLanguageCode = "";
     private string selectedVoiceCode = "";
     private List<string> voices = new List<string>();
-    private bool disableVoiceCombo = true;
-    public SpeechSynthesizer synthesizer;
+    private bool disableVoiceCombo => string.IsNullOrEmpty(selectedLanguageCode);
+    private bool disablePlay => string.IsNullOrEmpty(selectedVoiceCode) || string.IsNullOrEmpty(selectedLanguageCode) || string.IsNullOrEmpty(SelectedText);
     public string buttonType = "fas fa-play";
+    private SpeechSynthesizer synthesizer;
 
-
-    async Task SynthesizeAudioAsync()
+    protected override Task OnParametersSetAsync()
     {
-        var config = SpeechConfig.FromSubscription("5efe52b12721446b8053109674e1d9d4", "southafricanorth");
-        config.SpeechSynthesisLanguage = selectedLanguageCode; ///language should be get and set from database; not hardcoded
-        config.SpeechSynthesisVoiceName = selectedVoiceCode; ///accent
+        return base.OnParametersSetAsync();
+    }
 
-        synthesizer = new SpeechSynthesizer(config); //runs text to speech conversions in-memory stream
-        var result = await synthesizer.SpeakTextAsync(selectedText);
+    async Task<byte[]> SynthesizeAudioAsync()
+    {
+        var config = SpeechConfig.FromSubscription("2f2a1ab47ab648c0836ac088c7562d21", "southafricanorth");
+        config.SpeechSynthesisLanguage = selectedLanguageCode; 
+        config.SpeechSynthesisVoiceName = selectedVoiceCode; 
+
+        using var synthesizer = new SpeechSynthesizer(config); //runs text to speech conversions in-memory stream
+        using var result = await synthesizer.SpeakTextAsync(SelectedText);
+        if (result.Reason == ResultReason.SynthesizingAudioCompleted)
+        {
+            var data = result.AudioData;
+            return data;
+        }
+        else if (result.Reason == ResultReason.Canceled)
+        {
+            var cancellation = SpeechSynthesisCancellationDetails.FromResult(result);
+            Console.WriteLine($"CANCELED: Reason={cancellation.Reason}");
+            if (cancellation.Reason == CancellationReason.Error)
+            {
+                Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
+                Console.WriteLine($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
+                Console.WriteLine($"CANCELED: Did you update the subscription info?");
+            }
+            return [];
+        }
+
+        return result.AudioData;
     }
 
     async Task OnLanguageChange(Microsoft.AspNetCore.Components.ChangeEventArgs e)
     {
         selectedLanguageCode = e.Value.ToString();
-        disableVoiceCombo = false;
-
         switch (selectedLanguageCode)
         {
             case "1":
-                voices = new List<string> { "EnglishA", "EnglishB", "EnglishC", "EnglishD", "EnglishE" };
+                voices = new List<string> { "Eng-Female", "Eng-Male"};
                 break;
             case "2":
-                voices = new List<string> { "Afr1", "Afr2" };
+                voices = new List<string> { "Afr-Female", "Afr-Male" };
                 break;
             case "3":
-                voices = new List<string> { "Zul1", "Zul2", "Zul3" };
+                voices = new List<string> { "Zul-Female", "Zul-Male"};
                 break;
             default:
                 voices = new List<string>(); // No voices for an unselected language
-                disableVoiceCombo = true; // Disable voice combo box if no valid language is selected
                 break;
         }
     }
@@ -83,38 +105,31 @@
         // Set the selectedLanguageCode and selectedVoiceCode based on the voice and language combination
         switch (selectedVoice)
         {
-            case "EnglishA":
-                selectedLanguageCode = "en-AU";
-                selectedVoiceCode = "en-AU-NatashaNeural";
+            case "Eng-Female":
+                selectedLanguageCode = "en-ZA";
+                selectedVoiceCode = "en-ZA-LeahNeural";
                 break;
-            case "EnglishB":
-                selectedLanguageCode = "en-AU";
-                selectedVoiceCode = "en-AU-WilliamNeural";
+            case "Eng-Male":
+                selectedLanguageCode = "en-ZA";
+                selectedVoiceCode = "en-ZA-LukeNeural";
                 break;
-            case "EnglishC":
-                selectedLanguageCode = "en-GB";
-                selectedVoiceCode = "en-GB-SoniaNeural";
-                break;
-            case "Afr1":
+            case "Afr-Female":
                 selectedLanguageCode = "af-ZA";
-                selectedVoiceCode = "af-ZA-AdriNeural3";
+                selectedVoiceCode = "af-ZA-AdriNeural";
                 break;
-            case "Afr2":
+            case "Afr-Male":
                 selectedLanguageCode = "af-ZA";
-                selectedVoiceCode = "af-ZA-WillemNeural3";
+                selectedVoiceCode = "af-ZA-WillemNeural";
                 break;
-            case "Zul1":
+            case "Zul-Female":
                 selectedLanguageCode = "zu-ZA";
-                selectedVoiceCode = "zu-ZA-ThandoNeural3";
+                selectedVoiceCode = "zu-ZA-ThandoNeural";
                 break;
-            case "Zul2":
+            case "Zul-Male":
                 selectedLanguageCode = "zu-ZA";
-                selectedVoiceCode = "zu-ZA-ThembaNeural3";
+                selectedVoiceCode = "zu-ZA-ThembaNeural";
                 break;
-            case "Zul3":
-                selectedLanguageCode = "zu-ZA";
-                selectedVoiceCode = "zu-ZA-LungeloNeural";
-                break;
+
             default:
                 selectedLanguageCode = string.Empty;
                 selectedVoiceCode = string.Empty;
@@ -127,22 +142,18 @@
         if (buttonType == "fas fa-play")
         {
             buttonType = "fas fa-pause";
-            await SynthesizeAudioAsync();
+            var audioData = await SynthesizeAudioAsync();
             buttonType = "fas fa-play";
         }
 
         else
         {
             buttonType = "fas fa-play";
-            await StopSpeakingAsync();
+            // await StopSpeakingAsync();
         }
     }
 
-    async Task StopSpeakingAsync()
-    {
-        await synthesizer.StopSpeakingAsync();
-
-    }
+   
 
 
 }
