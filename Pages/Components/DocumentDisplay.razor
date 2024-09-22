@@ -1,4 +1,4 @@
-﻿        @using Syncfusion.Blazor;
+﻿@using Syncfusion.Blazor;
 @using Syncfusion.Blazor.SfPdfViewer;
 @using Syncfusion;
 
@@ -37,7 +37,7 @@
     {
         get
         {
-            var physicalPath = Path.Combine(Directory.GetCurrentDirectory(), "Pages", "Components", "InitialDisplay.pdf");
+            var physicalPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Document", "InitialDisplay.pdf");
 
             return physicalPath;
 
