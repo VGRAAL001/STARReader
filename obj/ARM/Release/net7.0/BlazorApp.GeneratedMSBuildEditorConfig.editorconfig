@@ -22,6 +22,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/rushn/Source/Repos/VGRAAL001/STARReader/Pages/Components/DocumentDisplay.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xEb2N1bWVudERpc3BsYXkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/rushn/Source/Repos/VGRAAL001/STARReader/Pages/Components/DocumentUploader.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xEb2N1bWVudFVwbG9hZGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -36,10 +40,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/rushn/Source/Repos/VGRAAL001/STARReader/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/rushn/Source/Repos/VGRAAL001/STARReader/Shared/LoginDisplay.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/rushn/Source/Repos/VGRAAL001/STARReader/Shared/SurveyPrompt.razor]
@@ -77,6 +77,10 @@ build_metadata.AdditionalFiles.CssScope = b-l5ir81d2c2
 [C:/Users/rushn/Source/Repos/VGRAAL001/STARReader/Shared/FooterMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEZvb3Rlck1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-u577enw4z7
+
+[C:/Users/rushn/Source/Repos/VGRAAL001/STARReader/Shared/LoginDisplay.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-xgp8tzn7lq
 
 [C:/Users/rushn/Source/Repos/VGRAAL001/STARReader/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=

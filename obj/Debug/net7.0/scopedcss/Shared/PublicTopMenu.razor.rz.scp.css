@@ -1,55 +1,70 @@
-.container[b-yyje806pt6] {
-    width: 100%;
-    margin: 0 auto;
-}
 
-header[b-yyje806pt6] {
+.h1[b-yyje806pt6] {
+    font-size:29px;
+    color: #FFFFFF;
     background-color: #102540;
-    color: white;
-    padding: 20px 0;
-    margin-right: 2rem;
-}
-.header-content[b-yyje806pt6] {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
+    padding: 14px 16px;
+    font-weight: bold;
+    text-align: center;
 }
 
-.logo[b-yyje806pt6] {
-    display: flex;
-    align-items: center;
-    
+.custom-image[b-yyje806pt6]{
+    width: 50px;
+    height:50px;
 }
 
-    .logo img[b-yyje806pt6] {
-        height: 40px;
-        margin-right: 15px;
+/* Add a black background color to the top navigation */
+.topnav[b-yyje806pt6] {
+    background-color: #102540;
+    overflow: hidden;
+}
+
+    /* Style the links inside the navigation bar */
+    .topnav a[b-yyje806pt6] {
+        float: left;
+        color: #FFFFFF;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
     }
 
-
-span ul[b-yyje806pt6] {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: space-around;
-    gap: 1.5rem;
-}
-
-    span ul li[b-yyje806pt6] {
-        display: inline;
-    }
-
-        span ul li a[b-yyje806pt6] {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
+        /* Change the color of links on hover */
+        .topnav a:hover[b-yyje806pt6] {
+            background-color: #A0C8D6;
+            color: #FFFFFF;
         }
 
-header span ul li a:hover[b-yyje806pt6] {
-    color: #A0C8D6;
+        /* Add a color to the active/current link */
+        .topnav a.active[b-yyje806pt6] {
+            background-color: #A0C8D6;
+            color: #FFFFFF;
+        }
+
+/* Add a black background color to the top navigation */
+.topnav-right[b-yyje806pt6] {
+    background-color: #102540;
+    overflow: hidden;
 }
 
-header span ul li:active[b-yyje806pt6] {
-    background-color: #67AAC3;
-}
+    /* Style the links inside the navigation bar */
+    .topnav-right a[b-yyje806pt6] {
+        float: right;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+        /* Change the color of links on hover */
+        .topnav-right a:hover[b-yyje806pt6] {
+            background-color: #67AAC3;
+            color: #A0C8D6;
+        }
+
+        /* Add a color to the active/current link */
+        .topnav-right a.active[b-yyje806pt6] {
+            background-color: #67AAC3;
+            color: #A0C8D6;
+        }
