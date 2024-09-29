@@ -84,7 +84,9 @@
         switch (selectedLanguageCode)
         {
             case "1":
-                voices = new List<string> { "Eng-Female", "Eng-Male"};
+                voices = new List<string> {"Eng-Female-ZA", "Eng-Male-ZA", "Eng-Female-KE", "Eng-Male-KE", "Eng-Female-NG", "Eng-Male-NG", 
+                "Eng-Female-TZ", "Eng-Male-TZ", "Eng-Female-US", "Eng-Male-US", "Eng-Female-AU", "Eng-Male-AU", "Eng-Female-UK", "Eng-Male-UK", 
+                "Eng-Female-SG", "Eng-Male-SG","Eng-Female-IN", "Eng-Male-IN" };
                 break;
             case "2":
                 voices = new List<string> { "Afr-Female", "Afr-Male" };
@@ -101,17 +103,80 @@
     void OnVoiceChange(Microsoft.AspNetCore.Components.ChangeEventArgs e)
     {
         var selectedVoice = e.Value.ToString();
-
         // Set the selectedLanguageCode and selectedVoiceCode based on the voice and language combination
         switch (selectedVoice)
         {
-            case "Eng-Female":
+            case "Eng-Female-ZA":
                 selectedLanguageCode = "en-ZA";
                 selectedVoiceCode = "en-ZA-LeahNeural";
                 break;
-            case "Eng-Male":
+            case "Eng-Male-ZA":
                 selectedLanguageCode = "en-ZA";
                 selectedVoiceCode = "en-ZA-LukeNeural";
+                break;
+            case "Eng-Female-KE":
+                selectedLanguageCode = "en-KE";
+                selectedVoiceCode = "en-KE-AsiliaNeural";
+                break;
+            case "Eng-Male-KE":
+                selectedLanguageCode = "en-KE";
+                selectedVoiceCode = "en-KE-ChilembaNeural";
+                break;
+            case "Eng-Female-NG":
+                selectedLanguageCode = "en-NG";
+                selectedVoiceCode = "en-NG-EzinneNeural";
+                break;
+            case "Eng-Male-NG":
+                selectedLanguageCode = "en-NG";
+                selectedVoiceCode = "en-NG-AbeoNeural";
+                break;
+            case "Eng-Female-TZ":
+                selectedLanguageCode = "en-TZ";
+                selectedVoiceCode = "en-TZ-ImaniNeural";
+                break;
+            case "Eng-Male-TZ":
+                selectedLanguageCode = "en-TZ";
+                selectedVoiceCode = "en-TZ-ElimuNeural";
+                break;
+            case "Eng-Female-US":
+                selectedLanguageCode = "en-US";
+                selectedVoiceCode = "en-US-AvaNeural";
+                break;
+            case "Eng-Male-US":
+                selectedLanguageCode = "en-US";
+                selectedVoiceCode = "en-US-AndrewNeural";
+                break;
+            case "Eng-Female-AU":
+                selectedLanguageCode = "en-AU";
+                selectedVoiceCode = "en-AU-NatashaNeural";
+                break;
+            case "Eng-Male-AU":
+                selectedLanguageCode = "en-AU";
+                selectedVoiceCode = "en-AU-WilliamNeural";
+                break;
+            case "Eng-Female-UK":
+                selectedLanguageCode = "en-GB";
+                selectedVoiceCode = "en-GB-SoniaNeural";
+                break;
+            case "Eng-Male-UK":
+                selectedLanguageCode = "en-GB";
+                selectedVoiceCode = "en-GB-RyanNeural";
+                break;
+            case "Eng-Female-SG":
+                selectedLanguageCode = "en-SG";
+                selectedVoiceCode = "en-SG-LunaNeural";
+                break;
+            case "Eng-Male-SG":
+                selectedLanguageCode = "en-SG";
+                selectedVoiceCode = "en-SG-WayneNeural";
+                break;
+            case "Eng-Female-IN":
+                selectedLanguageCode = "en-IN";
+                selectedVoiceCode = "en-IN-NeerjaNeural";
+                break;
+            case "Eng-Male-IN":
+                selectedLanguageCode = "en-IN";
+                selectedVoiceCode = "en-IN-PrabhatNeural";
                 break;
             case "Afr-Female":
                 selectedLanguageCode = "af-ZA";
