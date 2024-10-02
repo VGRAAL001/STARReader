@@ -36,12 +36,15 @@
     [Parameter]
     public string? SelectedText { get; set; }
 
+    private string speechKey = "2f2a1ab47ab648c0836ac088c7562d21";
+    private string speechRegion = "southafricanorth";
     private string selectedLanguageCode = "";
     private string selectedVoiceCode = "";
     private List<string> voices = new List<string>();
     private bool disableVoiceCombo => string.IsNullOrEmpty(selectedLanguageCode);
     private bool disablePlay => string.IsNullOrEmpty(selectedVoiceCode) || string.IsNullOrEmpty(selectedLanguageCode) || string.IsNullOrEmpty(SelectedText);
     public string buttonType = "fas fa-play";
+    public bool isPlaying = false;
     private SpeechSynthesizer synthesizer;
 
     protected override Task OnParametersSetAsync()
@@ -49,33 +52,96 @@
         return base.OnParametersSetAsync();
     }
 
+    void HandleSynthesisResult(SpeechSynthesisResult result, string text)
+    {
+        switch (result.Reason)
+        {
+            case ResultReason.SynthesizingAudioCompleted:
+                Console.WriteLine($"Speech synthesized for text: [{text}]");
+                break;
+
+            case ResultReason.Canceled:
+                var cancellation = SpeechSynthesisCancellationDetails.FromResult(result);
+                Console.WriteLine($"CANCELED: Reason={cancellation.Reason}");
+
+                if (cancellation.Reason == CancellationReason.Error)
+                {
+                    Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
+                    Console.WriteLine($"CANCELED: ErrorDetails=[{cancellation.ErrorDetails}]");
+                    Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+                }
+                break;
+
+            default:
+                Console.WriteLine($"UNKNOWN: Speech synthesis result reason: {result.Reason}");
+                break;
+        }
+    }
+
     async Task<byte[]> SynthesizeAudioAsync()
     {
-        var config = SpeechConfig.FromSubscription("2f2a1ab47ab648c0836ac088c7562d21", "southafricanorth");
+        var config = SpeechConfig.FromSubscription(speechKey, speechRegion );
         config.SpeechSynthesisLanguage = selectedLanguageCode; 
-        config.SpeechSynthesisVoiceName = selectedVoiceCode; 
+        config.SpeechSynthesisVoiceName = selectedVoiceCode;
 
-        using var synthesizer = new SpeechSynthesizer(config); //runs text to speech conversions in-memory stream
-        using var result = await synthesizer.SpeakTextAsync(SelectedText);
-        if (result.Reason == ResultReason.SynthesizingAudioCompleted)
+        using (synthesizer = new SpeechSynthesizer(config)) //runs text to speech conversions in-memory stream
         {
-            var data = result.AudioData;
-            return data;
-        }
-        else if (result.Reason == ResultReason.Canceled)
-        {
-            var cancellation = SpeechSynthesisCancellationDetails.FromResult(result);
-            Console.WriteLine($"CANCELED: Reason={cancellation.Reason}");
-            if (cancellation.Reason == CancellationReason.Error)
+            using var result = await synthesizer.SpeakTextAsync(SelectedText);
+            HandleSynthesisResult(result, SelectedText);
+
+            if (result.Reason == ResultReason.SynthesizingAudioCompleted)
             {
-                Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
-                Console.WriteLine($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
-                Console.WriteLine($"CANCELED: Did you update the subscription info?");
+                var data = result.AudioData;
+                return data;
             }
-            return [];
+            else
+            {
+                return [];
+            }
         }
 
-        return result.AudioData;
+    }
+
+    // async Task playAudio()
+    // {
+    //     if (buttonType == "fas fa-play")
+    //     {
+    //         buttonType = "fas fa-pause";
+    //         var audioData = await SynthesizeAudioAsync();
+    //         buttonType = "fas fa-play";
+    //     }
+
+    //     else
+    //     {
+    //         buttonType = "fas fa-play";
+    //         await PauseSpeakingAsync();
+    //     }
+    // }
+
+    async Task playAudio()
+    {
+        if (isPlaying==false) // If not currently playing
+        {
+            isPlaying = true;
+            buttonType = "fas fa-pause"; // Change button to pause
+            await SynthesizeAudioAsync(); // Start synthesizing audio
+            buttonType = "fas fa-play"; // Change button to play after audio complete
+            isPlaying = false; //after audio is complete
+        }
+        else // If currently playing
+        {
+            isPlaying = false;
+            buttonType = "fas fa-play"; // Change button to play
+            await PauseSpeakingAsync(); // Stop audio playback
+        }
+    }
+
+    async Task PauseSpeakingAsync()
+    {
+        if (synthesizer != null)
+        {
+            await synthesizer.StopSpeakingAsync(); // Stop the synthesizer
+        }
     }
 
     async Task OnLanguageChange(Microsoft.AspNetCore.Components.ChangeEventArgs e)
@@ -84,7 +150,9 @@
         switch (selectedLanguageCode)
         {
             case "1":
-                voices = new List<string> { "Eng-Female", "Eng-Male"};
+                voices = new List<string> {"Eng-Female-ZA", "Eng-Male-ZA", "Eng-Female-KE", "Eng-Male-KE", "Eng-Female-NG", "Eng-Male-NG", 
+                "Eng-Female-TZ", "Eng-Male-TZ", "Eng-Female-US", "Eng-Male-US", "Eng-Female-AU", "Eng-Male-AU", "Eng-Female-UK", "Eng-Male-UK", 
+                "Eng-Female-SG", "Eng-Male-SG","Eng-Female-IN", "Eng-Male-IN" };
                 break;
             case "2":
                 voices = new List<string> { "Afr-Female", "Afr-Male" };
@@ -101,17 +169,80 @@
     void OnVoiceChange(Microsoft.AspNetCore.Components.ChangeEventArgs e)
     {
         var selectedVoice = e.Value.ToString();
-
         // Set the selectedLanguageCode and selectedVoiceCode based on the voice and language combination
         switch (selectedVoice)
         {
-            case "Eng-Female":
+            case "Eng-Female-ZA":
                 selectedLanguageCode = "en-ZA";
                 selectedVoiceCode = "en-ZA-LeahNeural";
                 break;
-            case "Eng-Male":
+            case "Eng-Male-ZA":
                 selectedLanguageCode = "en-ZA";
                 selectedVoiceCode = "en-ZA-LukeNeural";
+                break;
+            case "Eng-Female-KE":
+                selectedLanguageCode = "en-KE";
+                selectedVoiceCode = "en-KE-AsiliaNeural";
+                break;
+            case "Eng-Male-KE":
+                selectedLanguageCode = "en-KE";
+                selectedVoiceCode = "en-KE-ChilembaNeural";
+                break;
+            case "Eng-Female-NG":
+                selectedLanguageCode = "en-NG";
+                selectedVoiceCode = "en-NG-EzinneNeural";
+                break;
+            case "Eng-Male-NG":
+                selectedLanguageCode = "en-NG";
+                selectedVoiceCode = "en-NG-AbeoNeural";
+                break;
+            case "Eng-Female-TZ":
+                selectedLanguageCode = "en-TZ";
+                selectedVoiceCode = "en-TZ-ImaniNeural";
+                break;
+            case "Eng-Male-TZ":
+                selectedLanguageCode = "en-TZ";
+                selectedVoiceCode = "en-TZ-ElimuNeural";
+                break;
+            case "Eng-Female-US":
+                selectedLanguageCode = "en-US";
+                selectedVoiceCode = "en-US-AvaNeural";
+                break;
+            case "Eng-Male-US":
+                selectedLanguageCode = "en-US";
+                selectedVoiceCode = "en-US-AndrewNeural";
+                break;
+            case "Eng-Female-AU":
+                selectedLanguageCode = "en-AU";
+                selectedVoiceCode = "en-AU-NatashaNeural";
+                break;
+            case "Eng-Male-AU":
+                selectedLanguageCode = "en-AU";
+                selectedVoiceCode = "en-AU-WilliamNeural";
+                break;
+            case "Eng-Female-UK":
+                selectedLanguageCode = "en-GB";
+                selectedVoiceCode = "en-GB-SoniaNeural";
+                break;
+            case "Eng-Male-UK":
+                selectedLanguageCode = "en-GB";
+                selectedVoiceCode = "en-GB-RyanNeural";
+                break;
+            case "Eng-Female-SG":
+                selectedLanguageCode = "en-SG";
+                selectedVoiceCode = "en-SG-LunaNeural";
+                break;
+            case "Eng-Male-SG":
+                selectedLanguageCode = "en-SG";
+                selectedVoiceCode = "en-SG-WayneNeural";
+                break;
+            case "Eng-Female-IN":
+                selectedLanguageCode = "en-IN";
+                selectedVoiceCode = "en-IN-NeerjaNeural";
+                break;
+            case "Eng-Male-IN":
+                selectedLanguageCode = "en-IN";
+                selectedVoiceCode = "en-IN-PrabhatNeural";
                 break;
             case "Afr-Female":
                 selectedLanguageCode = "af-ZA";
@@ -137,21 +268,7 @@
         }
     }
 
-    async Task playAudio()
-    {
-        if (buttonType == "fas fa-play")
-        {
-            buttonType = "fas fa-pause";
-            var audioData = await SynthesizeAudioAsync();
-            buttonType = "fas fa-play";
-        }
-
-        else
-        {
-            buttonType = "fas fa-play";
-            // await StopSpeakingAsync();
-        }
-    }
+    
 
    
 
