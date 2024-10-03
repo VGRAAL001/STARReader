@@ -102,22 +102,6 @@
 
     }
 
-    // async Task playAudio()
-    // {
-    //     if (buttonType == "fas fa-play")
-    //     {
-    //         buttonType = "fas fa-pause";
-    //         var audioData = await SynthesizeAudioAsync();
-    //         buttonType = "fas fa-play";
-    //     }
-
-    //     else
-    //     {
-    //         buttonType = "fas fa-play";
-    //         await PauseSpeakingAsync();
-    //     }
-    // }
-
     async Task playAudio()
     {
         if (isPlaying==false) // If not currently playing
@@ -133,7 +117,7 @@
             isPlaying = false;
             buttonType = "fas fa-play"; // Change button to play
             await PauseSpeakingAsync(); // Stop audio playback
-        }
+        } 
     }
 
     async Task PauseSpeakingAsync()
@@ -146,6 +130,7 @@
 
     async Task OnLanguageChange(Microsoft.AspNetCore.Components.ChangeEventArgs e)
     {
+        
         selectedLanguageCode = e.Value.ToString();
         switch (selectedLanguageCode)
         {
