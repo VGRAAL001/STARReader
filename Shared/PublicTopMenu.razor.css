@@ -1,77 +1,143 @@
-
-.h1 {
-    font-size:29px;
-    color: #FFFFFF;
-    background-color: #102540;
-    padding: 14px 16px;
-    font-weight: bold;
-    text-align: center;
-    
+/* Ensure body and html occupy the full width */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
-.custom-image{
-    width: 50px;
-    height:50px;
-    
-}
-
-/* Add a black background color to the top navigation */
+/* Default Style for the Navigation Bar (applies to all screen sizes) */
 .topnav {
+    display: flex;
+    justify-content: space-between; /* Spread elements across the navbar */
+    align-items: center; /* Vertically align items in the center */
     background-color: #102540;
-    overflow: hidden;
-    
+    padding: 8px 16px;
+    height: 55px;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
 }
 
-    /* Style the links inside the navigation bar */
+    /* Style for the links */
     .topnav a {
-        float: left;
-        color: #FFFFFF;
-        text-align: center;
-        padding: 14px 16px;
+        color: white;
+        padding: 8px 16px;
         text-decoration: none;
-        font-size: 17px;
-        
+        display: block;
+        text-align: center;
     }
 
-        /* Change the color of links on hover */
         .topnav a:hover {
-            background-color: #A0C8D6;
-            color: #FFFFFF;
+            background-color: #ddd;
+            color: black;
         }
 
-        /* Add a color to the active/current link */
-        .topnav a.active {
-            background-color: #A0C8D6;
-            color: #FFFFFF;
-        }
-
-/* Add a black background color to the top navigation */
-.topnav-right {
-    background-color: #102540;
-    overflow: hidden;
+/* Style for the logo */
+.custom-image {
+    max-width: 40px;
+    margin-right: 10px;
 }
 
-    /* Style the links inside the navigation bar */
-    .topnav-right a {
-        float: right;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
+/* Style for the header text */
+.h1 {
+    color: white;
+    font-size: 18px;
+    margin-right: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Media Queries */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .topnav {
+        flex-direction: column; /* Stack items vertically */
+        height: auto; /* Let height adjust based on content */
+        padding: 10px;
     }
 
-        /* Change the color of links on hover */
-        .topnav-right a:hover {
-            background-color: #67AAC3;
-            color: #A0C8D6;
+        .topnav a, .h1 {
+            width: 100%; /* Full width for each link and header */
+            padding: 10px 0;
+            text-align: center; /* Center the links */
         }
 
-        /* Add a color to the active/current link */
-        .topnav-right a.active {
-            background-color: #67AAC3;
-            color: #A0C8D6;
-        }
+    .custom-image {
+        margin: 0 auto; /* Center the logo */
+        max-width: 50px; /* Slightly larger logo for small screens */
+    }
+}
 
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .topnav {
+        padding: 10px 16px;
+    }
 
+    .h1 {
+        font-size: 20px;
+    }
 
+    .custom-image {
+        max-width: 45px; /* Slightly larger logo */
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .topnav {
+        flex-direction: row; /* Horizontal layout */
+        justify-content: space-around; /* Spread items with more space around them */
+        padding: 10px 20px;
+    }
+
+    .h1 {
+        font-size: 22px;
+    }
+
+    .custom-image {
+        max-width: 50px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .topnav {
+        justify-content: space-between;
+        padding: 10px 24px;
+    }
+
+    .h1 {
+        font-size: 24px;
+    }
+
+    .custom-image {
+        max-width: 60px; /* Larger logo for desktops */
+    }
+
+    .topnav a {
+        padding: 8px 20px; /* More padding for links */
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .topnav {
+        padding: 12px 30px;
+    }
+
+    .h1 {
+        font-size: 26px; /* Larger font size for large screens */
+    }
+
+    .custom-image {
+        max-width: 70px; /* Even larger logo */
+    }
+
+    .topnav a {
+        padding: 10px 24px; /* More padding for larger screens */
+    }
+}
