@@ -12,6 +12,7 @@
         <option value="1">English</option>
         <option value="2">Afrikaans</option>
         <option value="3">isiZulu</option>
+        <option value="4">French</option>
     </select>
 
     <br />
@@ -130,7 +131,7 @@
 
     async Task OnLanguageChange(Microsoft.AspNetCore.Components.ChangeEventArgs e)
     {
-        
+
         selectedLanguageCode = e.Value.ToString();
         switch (selectedLanguageCode)
         {
@@ -144,6 +145,9 @@
                 break;
             case "3":
                 voices = new List<string> { "Zul-Female", "Zul-Male"};
+                break;
+            case "4":
+                voices = new List<string> { "French-Female","French-Male" };
                 break;
             default:
                 voices = new List<string>(); // No voices for an unselected language
@@ -245,7 +249,14 @@
                 selectedLanguageCode = "zu-ZA";
                 selectedVoiceCode = "zu-ZA-ThembaNeural";
                 break;
-
+            case "French-Female":
+                selectedLanguageCode = "fr-FR";
+                selectedVoiceCode = "fr-FR-DeniseNeural";
+                break;
+            case "French-Male":
+                selectedLanguageCode = "fr-FR";
+                selectedVoiceCode = "fr-FR-HenriNeural";
+                break;
             default:
                 selectedLanguageCode = string.Empty;
                 selectedVoiceCode = string.Empty;
