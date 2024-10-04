@@ -4,11 +4,11 @@
     <div class="title">&nbsp &nbsp  StarReader  &nbsp &nbsp</div>
     <div class="controls">
 
-        <DocumentReader SelectedText="@SelectedText" />
+        <DocumentReader SelectedText="@SelectedText" @bind-SpeedValue="speedValue" />
 
         <div class="speed-control">
             <label for="speed">&nbsp &nbsp Speed:</label>
-            <input type="range" id="speed" name="speed" min="0.5" max="2.0" value="1" step="0.1" oninput="adjustSpeed(this.value)">
+            <input type="range" id="speed" name="speed" min="0.5" max="2.0" value="1" step="0.1" @oninput="@OnSpeedChange">
             <span id="speed-value">1.0x</span>
         </div>
     </div>
@@ -22,6 +22,20 @@
 
 @code {
     string? SelectedText;
+    private double speedValue;
+    
+
+   async Task OnSpeedChange(Microsoft.AspNetCore.Components.ChangeEventArgs e)
+    {
+        if (double.TryParse(e.Value.ToString(), out var speed))
+        {
+           speedValue = speed; // Update the speed value based on the slider input
+           
+           
+        }
+    }
+
+    
 }
 
 
@@ -34,9 +48,7 @@
 
     setInterval(updateClock, 1000);
 
-    function adjustSpeed(value) {
-        document.getElementById('speed-value').innerText = value + 'x';
-    }
+   
 </script>
 
 
