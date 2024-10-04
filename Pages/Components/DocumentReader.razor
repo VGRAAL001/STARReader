@@ -5,6 +5,7 @@
 @using Microsoft.CognitiveServices.Speech.Audio;
 @using Microsoft.CognitiveServices.Speech.Translation;
 
+
 <div class="combo-box">
     <label for="languageComboBox">Choose a language:</label>
     <select id="languageComboBox" @onchange="OnLanguageChange" name="languageComboBox">
@@ -34,8 +35,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<button @onclick="playAudio" disabled="@disablePlay"><i class=@buttonType></i></button>
 
 @code {
-    [Parameter]
-    public string? SelectedText { get; set; }
+        [Parameter]
+        public string? SelectedText { get; set; }
+
+    [Parameter] public double SpeedValue { get; set; }
+    [Parameter] public EventCallback<double> SpeedValueChanged { get; set; }
 
     private string speechKey = "2f2a1ab47ab648c0836ac088c7562d21";
     private string speechRegion = "southafricanorth";
@@ -47,6 +51,7 @@
     public string buttonType = "fas fa-play";
     public bool isPlaying = false;
     private SpeechSynthesizer synthesizer;
+   
 
     protected override Task OnParametersSetAsync()
     {
@@ -84,9 +89,13 @@
         var config = SpeechConfig.FromSubscription(speechKey, speechRegion );
         config.SpeechSynthesisLanguage = selectedLanguageCode; 
         config.SpeechSynthesisVoiceName = selectedVoiceCode;
+     
+
+
 
         using (synthesizer = new SpeechSynthesizer(config)) //runs text to speech conversions in-memory stream
         {
+            
             using var result = await synthesizer.SpeakTextAsync(SelectedText);
             HandleSynthesisResult(result, SelectedText);
 
@@ -102,6 +111,8 @@
         }
 
     }
+
+   
 
     async Task playAudio()
     {
