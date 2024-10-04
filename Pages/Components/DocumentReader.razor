@@ -89,7 +89,7 @@
         var config = SpeechConfig.FromSubscription(speechKey, speechRegion );
         config.SpeechSynthesisLanguage = selectedLanguageCode; 
         config.SpeechSynthesisVoiceName = selectedVoiceCode;
-     
+        config.SetProperty(PropertyId.SpeechServiceConnection_SynthVoiceRate, "1.5");
 
 
 
