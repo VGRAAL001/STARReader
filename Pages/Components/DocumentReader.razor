@@ -35,8 +35,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<button @onclick="playAudio" disabled="@disablePlay"><i class=@buttonType></i></button>
 
 @code {
-        [Parameter]
-        public string? SelectedText { get; set; }
+    [Parameter]
+    public string? SelectedText { get; set; }
 
     [Parameter] public double SpeedValue { get; set; }
     [Parameter] public EventCallback<double> SpeedValueChanged { get; set; }
@@ -51,7 +51,7 @@
     public string buttonType = "fas fa-play";
     public bool isPlaying = false;
     private SpeechSynthesizer synthesizer;
-   
+
 
     protected override Task OnParametersSetAsync()
     {
@@ -89,14 +89,22 @@
         var config = SpeechConfig.FromSubscription(speechKey, speechRegion );
         config.SpeechSynthesisLanguage = selectedLanguageCode; 
         config.SpeechSynthesisVoiceName = selectedVoiceCode;
-        config.SetProperty(PropertyId.SpeechServiceConnection_SynthVoiceRate, "1.5");
+
 
 
 
         using (synthesizer = new SpeechSynthesizer(config)) //runs text to speech conversions in-memory stream
         {
-            
-            using var result = await synthesizer.SpeakTextAsync(SelectedText);
+            string rate = SpeedValue.ToString("F1");
+            string voice = $"{selectedLanguageCode}-{selectedVoiceCode}";
+            string ssml = $@"
+        <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
+            <voice name='{voice}'>
+                <prosody rate='{rate}'>{SelectedText}</prosody>
+            </voice>
+        </speak>";
+
+            using var result = await synthesizer.SpeakSsmlAsync(ssml);
             HandleSynthesisResult(result, SelectedText);
 
             if (result.Reason == ResultReason.SynthesizingAudioCompleted)
