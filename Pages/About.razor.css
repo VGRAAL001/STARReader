@@ -59,18 +59,20 @@ main {
     background-color: #248EC2;
     color: white;
     text-align: center;
-    padding: 50px 20px;
-    margin-top: 0px;
-    width: 100vw;
-    margin-left: -12vw; /* Correct the margin */
-    position: relative;
-    box-sizing: border-box;
+    padding: 20px 0; /* Same as footer */
+    margin: 0 auto; /* Centers the section */
+    width: 100%; /* Ensures full width like the footer */
+    box-sizing: border-box; /* Ensures padding is included in the width */
+    position: relative; /* Adjust based on layout needs */
 }
 
     .cta h2 {
         font-size: 28px;
         margin-bottom: 20px;
     }
+
+
+    
 
     .cta p {
         font-size: 18px;
