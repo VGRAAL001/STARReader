@@ -12,6 +12,7 @@
         <option value="1">English</option>
         <option value="2">Afrikaans</option>
         <option value="3">isiZulu</option>
+        <option value="4">French</option>
     </select>
 
     <br />
@@ -36,6 +37,9 @@
     [Parameter]
     public string? SelectedText { get; set; }
 
+    [Parameter] public string SpeedValue { get; set; }
+    [Parameter] public EventCallback<string> SpeedValueChanged { get; set; }
+
     private string speechKey = "2f2a1ab47ab648c0836ac088c7562d21";
     private string speechRegion = "southafricanorth";
     private string selectedLanguageCode = "";
@@ -46,6 +50,7 @@
     public string buttonType = "fas fa-play";
     public bool isPlaying = false;
     private SpeechSynthesizer synthesizer;
+
 
     protected override Task OnParametersSetAsync()
     {
@@ -80,13 +85,27 @@
 
     async Task<byte[]> SynthesizeAudioAsync()
     {
-        var config = SpeechConfig.FromSubscription(speechKey, speechRegion );
-        config.SpeechSynthesisLanguage = selectedLanguageCode; 
-        config.SpeechSynthesisVoiceName = selectedVoiceCode;
+        var config = SpeechConfig.FromSubscription(speechKey, speechRegion);
+        // config.SpeechSynthesisLanguage = selectedLanguageCode;
+        // config.SpeechSynthesisVoiceName = selectedVoiceCode;
+
+
+
 
         using (synthesizer = new SpeechSynthesizer(config)) //runs text to speech conversions in-memory stream
         {
-            using var result = await synthesizer.SpeakTextAsync(SelectedText);
+            string rate = SpeedValue;
+
+            string ssml = $@"
+        <speak version='1.0'
+            xmlns='http://www.w3.org/2001/10/synthesis'
+            xml:lang='{selectedLanguageCode}'>
+            <voice name='{selectedVoiceCode}'>
+                <prosody rate='{rate}'>{SelectedText}</prosody>
+            </voice>
+        </speak>";
+
+            using var result = await synthesizer.SpeakSsmlAsync(ssml);
             HandleSynthesisResult(result, SelectedText);
 
             if (result.Reason == ResultReason.SynthesizingAudioCompleted)
@@ -102,25 +121,11 @@
 
     }
 
-    // async Task playAudio()
-    // {
-    //     if (buttonType == "fas fa-play")
-    //     {
-    //         buttonType = "fas fa-pause";
-    //         var audioData = await SynthesizeAudioAsync();
-    //         buttonType = "fas fa-play";
-    //     }
 
-    //     else
-    //     {
-    //         buttonType = "fas fa-play";
-    //         await PauseSpeakingAsync();
-    //     }
-    // }
 
     async Task playAudio()
     {
-        if (isPlaying==false) // If not currently playing
+        if (isPlaying == false) // If not currently playing
         {
             isPlaying = true;
             buttonType = "fas fa-pause"; // Change button to pause
@@ -146,19 +151,23 @@
 
     async Task OnLanguageChange(Microsoft.AspNetCore.Components.ChangeEventArgs e)
     {
+
         selectedLanguageCode = e.Value.ToString();
         switch (selectedLanguageCode)
         {
             case "1":
-                voices = new List<string> {"Eng-Female-ZA", "Eng-Male-ZA", "Eng-Female-KE", "Eng-Male-KE", "Eng-Female-NG", "Eng-Male-NG", 
-                "Eng-Female-TZ", "Eng-Male-TZ", "Eng-Female-US", "Eng-Male-US", "Eng-Female-AU", "Eng-Male-AU", "Eng-Female-UK", "Eng-Male-UK", 
+                voices = new List<string> {"Eng-Female-ZA", "Eng-Male-ZA", "Eng-Female-KE", "Eng-Male-KE", "Eng-Female-NG", "Eng-Male-NG",
+                "Eng-Female-TZ", "Eng-Male-TZ", "Eng-Female-US", "Eng-Male-US", "Eng-Female-AU", "Eng-Male-AU", "Eng-Female-UK", "Eng-Male-UK",
                 "Eng-Female-SG", "Eng-Male-SG","Eng-Female-IN", "Eng-Male-IN" };
                 break;
             case "2":
                 voices = new List<string> { "Afr-Female", "Afr-Male" };
                 break;
             case "3":
-                voices = new List<string> { "Zul-Female", "Zul-Male"};
+                voices = new List<string> { "Zul-Female", "Zul-Male" };
+                break;
+            case "4":
+                voices = new List<string> { "French-Female", "French-Male" };
                 break;
             default:
                 voices = new List<string>(); // No voices for an unselected language
@@ -260,7 +269,14 @@
                 selectedLanguageCode = "zu-ZA";
                 selectedVoiceCode = "zu-ZA-ThembaNeural";
                 break;
-
+            case "French-Female":
+                selectedLanguageCode = "fr-FR";
+                selectedVoiceCode = "fr-FR-DeniseNeural";
+                break;
+            case "French-Male":
+                selectedLanguageCode = "fr-FR";
+                selectedVoiceCode = "fr-FR-HenriNeural";
+                break;
             default:
                 selectedLanguageCode = string.Empty;
                 selectedVoiceCode = string.Empty;
@@ -268,9 +284,9 @@
         }
     }
 
-    
 
-   
+
+
 
 
 }
