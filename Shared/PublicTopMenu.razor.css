@@ -3,6 +3,7 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
+    height: 100%;
 }
 
 /* Default Style for the Navigation Bar (applies to all screen sizes) */
@@ -56,12 +57,13 @@ html, body {
     .topnav {
         flex-direction: column; /* Stack items vertically */
         height: auto; /* Let height adjust based on content */
-        padding: 10px;
+        padding: 10px; /* Reduce padding for small screens */
+        position: static; /* Change from fixed to static */
     }
 
         .topnav a, .h1 {
             width: 100%; /* Full width for each link and header */
-            padding: 10px 0;
+            padding: 8px; /* Smaller padding */
             text-align: center; /* Center the links */
         }
 
@@ -74,15 +76,15 @@ html, body {
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .topnav {
-        padding: 10px 16px;
+        padding: 16px;
     }
 
     .h1 {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .custom-image {
-        max-width: 45px; /* Slightly larger logo */
+        max-width: 50px; /* Slightly larger logo */
     }
 }
 
@@ -91,15 +93,15 @@ html, body {
     .topnav {
         flex-direction: row; /* Horizontal layout */
         justify-content: space-around; /* Spread items with more space around them */
-        padding: 10px 20px;
+        padding: 16px 32px;
     }
 
     .h1 {
-        font-size: 22px;
+        font-size: 20px;
     }
 
     .custom-image {
-        max-width: 50px;
+        max-width: 60px;
     }
 }
 
@@ -107,26 +109,26 @@ html, body {
 @media only screen and (min-width: 992px) {
     .topnav {
         justify-content: space-between;
-        padding: 10px 24px;
+        padding: 16px 40px;
     }
 
     .h1 {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .custom-image {
-        max-width: 60px; /* Larger logo for desktops */
+        max-width: 70px; /* Larger logo for desktops */
     }
 
     .topnav a {
-        padding: 8px 20px; /* More padding for links */
+        padding: 10px 20px; /* Adjust padding for links */
     }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .topnav {
-        padding: 12px 30px;
+        padding: 16px 50px;
     }
 
     .h1 {
@@ -134,10 +136,12 @@ html, body {
     }
 
     .custom-image {
-        max-width: 70px; /* Even larger logo */
+        max-width: 80px; /* Even larger logo */
     }
 
     .topnav a {
-        padding: 10px 24px; /* More padding for larger screens */
+        padding: 12px 24px; /* More padding for larger screens */
     }
 }
+
+has context menu
