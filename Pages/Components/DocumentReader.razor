@@ -37,8 +37,8 @@
     [Parameter]
     public string? SelectedText { get; set; }
 
-    [Parameter] public double SpeedValue { get; set; }
-    [Parameter] public EventCallback<double> SpeedValueChanged { get; set; }
+    [Parameter] public string SpeedValue { get; set; }
+    [Parameter] public EventCallback<string> SpeedValueChanged { get; set; }
 
     private string speechKey = "2f2a1ab47ab648c0836ac088c7562d21";
     private string speechRegion = "southafricanorth";
@@ -94,7 +94,7 @@
 
         using (synthesizer = new SpeechSynthesizer(config)) //runs text to speech conversions in-memory stream
         {
-            string rate = SpeedValue.ToString("0.0");
+            string rate = SpeedValue;
 
             string ssml = $@"
         <speak version='1.0'
